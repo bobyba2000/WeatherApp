@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:weather_app/core/dependencies/app_dependencies.dart';
+import 'package:weather_app/core/layout/theme.dart';
+
+import 'generated/l10n.dart';
 
 void main() {
+  AppDependencies.init();
   runApp(const MyApp());
 }
 
@@ -9,11 +16,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: themeData(context),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: const Locale('en'),
+      builder: EasyLoading.init(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
