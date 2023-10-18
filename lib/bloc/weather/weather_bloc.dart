@@ -39,12 +39,10 @@ class WeatherBloc extends BaseBloc {
 
   Future<void> getCurrentWeather(
       GetCurrentWeatherEvent event, Emitter<BaseState> emit) async {
-    final apiKey = String.fromEnvironment('WEATHER_API_KEY');
-    print('apiKey: $apiKey');
     final response = await weatherService.getCurrentWeather(
       CurrentWeatherRequest(
         event.query,
-        '6d5df640cbe945e8b66152950231710',
+        const String.fromEnvironment(AppKeys.apiKey),
       ),
     );
     if (response.isSuccessful) {}

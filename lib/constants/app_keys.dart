@@ -1,3 +1,3 @@
 class AppKeys {
-  static String apiKey = 'WEATHER_API_KEY';
+  static const apiKey = 'WEATHER_API_KEY';
 }
