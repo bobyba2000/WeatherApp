@@ -1,50 +1,39 @@
 import 'dart:convert';
 
+import 'package:weather_app/core/model/error_response_model.dart';
+
 import '../dependencies/app_dependencies.dart';
 
 class ResponseResult<T extends BaseResponseModel> {
-  T? data;
-  bool isSuccess;
-  String? errCode;
-  String? errMsg;
+  final T? data;
+  final bool isSuccessful;
+  final ErrorResponseModel? error;
 
   ResponseResult({
     this.data,
-    required this.isSuccess,
-    this.errCode,
-    this.errMsg,
+    required this.isSuccessful,
+    this.error,
   });
 
-  factory ResponseResult.fromJson(Map<String, dynamic> json) {
-    T? responseData = AppDependencies.injector.get<T>();
-    try {
-      if (json['data'] != null) {
-        if (json['data'] is List) {
-          final listData = <String, dynamic>{};
-          listData['items'] = json['data'];
-          responseData = responseData.fromJson(listData) as T;
-        } else if (json['data'] is String) {
-          responseData = responseData.fromJson(json) as T;
-        } else {
-          responseData = responseData.fromJson(json['data'] as Map<String, dynamic>) as T;
-        }
-      } else {
-        responseData = null;
-      }
-    } catch (e) {
-      return ResponseResult(
-        isSuccess: false,
-        errCode: '500',
-        errMsg: e.toString(),
-        data: null,
-      );
+  factory ResponseResult.fromJson(dynamic json) {
+    if (json['error'] != null) {
+      final error = ErrorResponseModel.fromJson(json['error']);
+      return ResponseResult(isSuccessful: false, error: error);
     }
-    return ResponseResult(
-      isSuccess: json['is_success'].toString() == 'true',
-      errCode: json['err_code'],
-      errMsg: json['err_msg'],
-      data: responseData,
-    );
+    if (json is Map<String, dynamic>) {
+      T? responseData = AppDependencies.injector.get<T>();
+      responseData = responseData.fromJson(json) as T;
+      return ResponseResult(data: responseData, isSuccessful: true);
+    }
+    if (json is List) {
+      final listData = <String, dynamic>{};
+      listData['data'] = json;
+      T? responseData = AppDependencies.injector.get<T>();
+      responseData = responseData.fromJson(listData) as T;
+      return ResponseResult(data: responseData, isSuccessful: true);
+    }
+
+    throw UnimplementedError();
   }
 }
 

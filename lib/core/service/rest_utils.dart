@@ -105,14 +105,17 @@ class RestUtils {
       ResponseResult<T> result =
           ResponseResult<T>.fromJson(jsonDecode(response.body));
       if (response.statusCode == 200) {
-        logger.d('✅ RESPONSE[${result.errCode}] => PATH: $uri\n DATA: $data');
+        logger.d(
+          '✅ RESPONSE[200] => PATH: $uri\n DATA: ${result.data?.toJson()}',
+        );
         return Success<T>(result.data);
       } else {
         logger.e(
-            '❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: ${result.errMsg}');
+          '❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: ${result.error?.toJson()}',
+        );
         return Failed<T>(
           response.statusCode.toString(),
-          result.errMsg ?? S.current.unknownError,
+          result.error?.message ?? S.current.unknownError,
         );
       }
     } catch (e) {
