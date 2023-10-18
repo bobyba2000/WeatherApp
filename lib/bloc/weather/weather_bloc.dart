@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/bloc/weather/weather_event.dart';
+import 'package:weather_app/bloc/weather/weather_state.dart';
 import 'package:weather_app/common/utility/location_utility.dart';
 import 'package:weather_app/constants/app_keys.dart';
 import 'package:weather_app/core/bloc/base_bloc.dart';
@@ -37,14 +38,18 @@ class WeatherBloc extends BaseBloc {
     return super.onInit(emit);
   }
 
-  Future<void> getCurrentWeather(
-      GetCurrentWeatherEvent event, Emitter<BaseState> emit) async {
+  Future<void> getCurrentWeather(GetCurrentWeatherEvent event, Emitter<BaseState> emit) async {
+    emit(const WeatherState(model: null));
     final response = await weatherService.getCurrentWeather(
       CurrentWeatherRequest(
         event.query,
         const String.fromEnvironment(AppKeys.apiKey),
       ),
     );
-    if (response.isSuccessful) {}
+    if (response.isSuccessful) {
+      emit(WeatherState(model: response.data));
+    }else{
+      
+    }
   }
 }

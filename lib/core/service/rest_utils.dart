@@ -33,8 +33,7 @@ class RestUtils {
         logger.d('✈️ REQUEST[${method.toString()}] => PATH: $uri \n');
       } else {
         try {
-          logger.d(
-              '✈️ REQUEST[${method.toString()}] => PATH: $uri \n DATA: ${jsonEncode(data)}');
+          logger.d('✈️ REQUEST[${method.toString()}] => PATH: $uri \n DATA: ${jsonEncode(data)}');
         } catch (e) {
           logger.e('✈️ REQUEST[$method] => PATH: $uri \n DATA: $data');
         }
@@ -101,16 +100,15 @@ class RestUtils {
           );
           break;
       }
-      ResponseResult<T> result =
-          ResponseResult<T>.fromJson(jsonDecode(response.body));
+      ResponseResult<T> result = ResponseResult<T>.fromJson(jsonDecode(response.body));
       if (response.statusCode == 200) {
         logger.d(
-          '✅ RESPONSE[200] => PATH: $uri\n DATA: ${result.data?.toJson()}',
+          '✅ RESPONSE[200] => PATH: $uri\n DATA: ${response.body}',
         );
         return Success<T>(result.data);
       } else {
         logger.e(
-          '❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: ${result.error?.toJson()}',
+          '❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: $response',
         );
         return Failed<T>(
           response.statusCode.toString(),

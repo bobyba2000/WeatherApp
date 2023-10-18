@@ -12,17 +12,14 @@ class LocationResponseModel extends BaseResponseModel {
   double? lon;
   String? tzId;
   int? localtimeEpoch;
-  DateTime? localtime;
 
   LocationResponseModel();
 
   @override
-  LocationResponseModel fromJson(Map<String, dynamic> json) =>
-      _$LocationResponseModelFromJson(json);
+  LocationResponseModel fromJson(Map<String, dynamic> json) => _$LocationResponseModelFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$LocationResponseModelToJson(this);
 
-  factory LocationResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$LocationResponseModelFromJson(json);
+  factory LocationResponseModel.fromJson(Map<String, dynamic> json) => _$LocationResponseModelFromJson(json);
 }

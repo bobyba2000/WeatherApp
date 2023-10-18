@@ -15,10 +15,7 @@ LocationResponseModel _$LocationResponseModelFromJson(
       ..lat = (json['lat'] as num?)?.toDouble()
       ..lon = (json['lon'] as num?)?.toDouble()
       ..tzId = json['tz_id'] as String?
-      ..localtimeEpoch = json['localtime_epoch'] as int?
-      ..localtime = json['localtime'] == null
-          ? null
-          : DateTime.parse(json['localtime'] as String);
+      ..localtimeEpoch = json['localtime_epoch'] as int?;
 
 Map<String, dynamic> _$LocationResponseModelToJson(
         LocationResponseModel instance) =>
@@ -30,5 +27,4 @@ Map<String, dynamic> _$LocationResponseModelToJson(
       'lon': instance.lon,
       'tz_id': instance.tzId,
       'localtime_epoch': instance.localtimeEpoch,
-      'localtime': instance.localtime?.toIso8601String(),
     };

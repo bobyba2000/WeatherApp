@@ -23,6 +23,6 @@ Install dependencies
 Please make sure your Flutter version is above 3.7. To run the app, run this command
 
 ```bash
-  flutter run --dart-define-from-file=api_keys.json
+  flutter run --dart-define-from-file=api-keys.json
 ```
 

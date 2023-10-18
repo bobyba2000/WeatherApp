@@ -24,6 +24,8 @@ dependencies:
   location:
     path: ./plugins/location
   intl: ^0.18.1
+  fluttertoast: ^8.2.2
+  google_fonts: ^6.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -32,8 +34,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
 
 flutter_gen:
   output: lib/generated/
