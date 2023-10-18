@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:weather_app/core/dependencies/app_dependencies.dart';
 import 'package:weather_app/core/layout/theme.dart';
+import 'package:weather_app/presentation/weather/weather_page.dart';
 
 import 'generated/l10n.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: const Locale('en'),
       builder: EasyLoading.init(),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const WeatherPage(),
     );
   }
 }

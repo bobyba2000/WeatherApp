@@ -8,16 +8,17 @@ part of 'location_response_model.dart';
 
 LocationResponseModel _$LocationResponseModelFromJson(
         Map<String, dynamic> json) =>
-    LocationResponseModel(
-      json['name'] as String,
-      json['region'] as String,
-      json['country'] as String,
-      (json['lat'] as num).toDouble(),
-      (json['lon'] as num).toDouble(),
-      json['tz_id'] as String,
-      json['localtime_epoch'] as int,
-      DateTime.parse(json['localtime'] as String),
-    );
+    LocationResponseModel()
+      ..name = json['name'] as String?
+      ..region = json['region'] as String?
+      ..country = json['country'] as String?
+      ..lat = (json['lat'] as num?)?.toDouble()
+      ..lon = (json['lon'] as num?)?.toDouble()
+      ..tzId = json['tz_id'] as String?
+      ..localtimeEpoch = json['localtime_epoch'] as int?
+      ..localtime = json['localtime'] == null
+          ? null
+          : DateTime.parse(json['localtime'] as String);
 
 Map<String, dynamic> _$LocationResponseModelToJson(
         LocationResponseModel instance) =>
@@ -29,5 +30,5 @@ Map<String, dynamic> _$LocationResponseModelToJson(
       'lon': instance.lon,
       'tz_id': instance.tzId,
       'localtime_epoch': instance.localtimeEpoch,
-      'localtime': instance.localtime.toIso8601String(),
+      'localtime': instance.localtime?.toIso8601String(),
     };

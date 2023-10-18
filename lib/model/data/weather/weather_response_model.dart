@@ -6,14 +6,10 @@ part 'weather_response_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ConditionInfoModel {
-  final String text;
-  final String icon;
-  final int code;
-  ConditionInfoModel(
-    this.text,
-    this.icon,
-    this.code,
-  );
+  String? text;
+  String? icon;
+  int? code;
+  ConditionInfoModel();
 
   factory ConditionInfoModel.fromJson(Map<String, dynamic> json) =>
       _$ConditionInfoModelFromJson(json);
@@ -23,23 +19,15 @@ class ConditionInfoModel {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class WeatherInfoModel {
-  final double tempC;
-  final double tempF;
-  final ConditionInfoModel condition;
-  final double humidity;
-  final double windKph;
-  final double feelslikeC;
-  final double feelslikeF;
+  double? tempC;
+  double? tempF;
+  ConditionInfoModel? condition;
+  double? humidity;
+  double? windKph;
+  double? feelslikeC;
+  double? feelslikeF;
 
-  WeatherInfoModel(
-    this.tempC,
-    this.tempF,
-    this.condition,
-    this.humidity,
-    this.windKph,
-    this.feelslikeC,
-    this.feelslikeF,
-  );
+  WeatherInfoModel();
 
   factory WeatherInfoModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherInfoModelFromJson(json);
@@ -49,10 +37,10 @@ class WeatherInfoModel {
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class WeatherResponseModel extends BaseResponseModel {
-  final LocationResponseModel location;
-  final WeatherInfoModel current;
+  LocationResponseModel? location;
+  WeatherInfoModel? current;
 
-  WeatherResponseModel(this.location, this.current);
+  WeatherResponseModel();
   @override
   WeatherResponseModel fromJson(Map<String, dynamic> json) =>
       _$WeatherResponseModelFromJson(json);

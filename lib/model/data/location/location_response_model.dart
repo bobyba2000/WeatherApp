@@ -5,25 +5,16 @@ part 'location_response_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class LocationResponseModel extends BaseResponseModel {
-  final String name;
-  final String region;
-  final String country;
-  final double lat;
-  final double lon;
-  final String tzId;
-  final int localtimeEpoch;
-  final DateTime localtime;
+  String? name;
+  String? region;
+  String? country;
+  double? lat;
+  double? lon;
+  String? tzId;
+  int? localtimeEpoch;
+  DateTime? localtime;
 
-  LocationResponseModel(
-    this.name,
-    this.region,
-    this.country,
-    this.lat,
-    this.lon,
-    this.tzId,
-    this.localtimeEpoch,
-    this.localtime,
-  );
+  LocationResponseModel();
 
   @override
   LocationResponseModel fromJson(Map<String, dynamic> json) =>

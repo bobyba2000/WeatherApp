@@ -12,7 +12,7 @@ class WeatherService extends BaseService {
   ) {
     return rest.sendRequest(
       Method.get,
-      ServicePath.currentWeather,
+      '${ServicePath.currentWeather}?key=${request.apiKey}&q=${request.q}',
       queryParameters: request.toJson(),
     );
   }

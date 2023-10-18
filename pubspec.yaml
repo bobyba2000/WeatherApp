@@ -21,7 +21,9 @@ dependencies:
   flutter_async_autocomplete: ^0.1.1
   build_runner: ^2.4.6
   json_annotation: ^4.8.1
-
+  location:
+    path: ./plugins/location
+  intl: ^0.18.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

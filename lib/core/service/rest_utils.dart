@@ -13,9 +13,8 @@ enum Method { get, post, put, delete }
 class RestUtils {
   var logger = Logger();
   String baseUrl;
-  String? apiKey;
 
-  RestUtils(this.baseUrl, {this.apiKey});
+  RestUtils(this.baseUrl);
 
   Future<Result<T>> sendRequest<T extends BaseResponseModel>(
     Method method,
