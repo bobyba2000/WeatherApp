@@ -13,8 +13,9 @@ enum Method { get, post, put, delete }
 class RestUtils {
   var logger = Logger();
   String baseUrl;
+  String? apiKey;
 
-  RestUtils(this.baseUrl);
+  RestUtils(this.baseUrl, {this.apiKey});
 
   Future<Result<T>> sendRequest<T extends BaseResponseModel>(
     Method method,
@@ -33,7 +34,8 @@ class RestUtils {
         logger.d('✈️ REQUEST[${method.toString()}] => PATH: $uri \n');
       } else {
         try {
-          logger.d('✈️ REQUEST[${method.toString()}] => PATH: $uri \n DATA: ${jsonEncode(data)}');
+          logger.d(
+              '✈️ REQUEST[${method.toString()}] => PATH: $uri \n DATA: ${jsonEncode(data)}');
         } catch (e) {
           logger.e('✈️ REQUEST[$method] => PATH: $uri \n DATA: $data');
         }
@@ -100,12 +102,14 @@ class RestUtils {
           );
           break;
       }
-      ResponseResult<T> result = ResponseResult<T>.fromJson(jsonDecode(response.body));
+      ResponseResult<T> result =
+          ResponseResult<T>.fromJson(jsonDecode(response.body));
       if (response.statusCode == 200) {
         logger.d('✅ RESPONSE[${result.errCode}] => PATH: $uri\n DATA: $data');
         return Success<T>(result.data);
       } else {
-        logger.e('❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: ${result.errMsg}');
+        logger.e(
+            '❌ RESPONSE[${response.statusCode}] => PATH: $uri\n ErrMessage: ${result.errMsg}');
         return Failed<T>(
           response.statusCode.toString(),
           result.errMsg ?? S.current.unknownError,

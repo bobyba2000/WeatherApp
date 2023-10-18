@@ -12,5 +12,4 @@ class Failed<T> extends Result<T> {
   String? errorCode;
   String message;
   Failed(this.errorCode, this.message) : super(null);
-  // bool get isTokenExpired => type == ErrorType.TOKEN_EXPIRED;
 }
