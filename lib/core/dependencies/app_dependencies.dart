@@ -12,7 +12,7 @@ class AppDependencies {
   static void init() {
     injector.registerFactory(
       () => RestUtils(
-        'http://api.weatherapi.com/v1/',
+        'https://api.weatherapi.com/v1/',
       ),
     );
     DataModelDependencies.init();
