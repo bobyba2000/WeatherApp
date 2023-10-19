@@ -5,6 +5,9 @@ import 'package:weather_app/model/data/weather/weather_response_model.dart';
 class DataModelDependencies {
   static void init() {
     AppDependencies.injector.registerFactory(() => LocationResponseModel());
+    AppDependencies.injector.registerFactory(
+      () => ListSuggestLocationResponseModel(),
+    );
     AppDependencies.injector.registerFactory(() => WeatherResponseModel());
   }
 }

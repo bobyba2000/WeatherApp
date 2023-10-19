@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "realFeel": MessageLookupByLibrary.simpleMessage("Real Feel"),
+        "searchHint": MessageLookupByLibrary.simpleMessage(
+            "Input a location (e.g., city name or zip code)"),
+        "searchLabel": MessageLookupByLibrary.simpleMessage("Location"),
         "unknownError": MessageLookupByLibrary.simpleMessage("Unknown Error")
       };
 }

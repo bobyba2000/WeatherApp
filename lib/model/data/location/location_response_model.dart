@@ -4,7 +4,7 @@ import 'package:weather_app/core/model/base_response_model.dart';
 part 'location_response_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class LocationResponseModel extends BaseResponseModel {
+class LocationResponseModel {
   String? name;
   String? region;
   String? country;
@@ -15,11 +15,30 @@ class LocationResponseModel extends BaseResponseModel {
 
   LocationResponseModel();
 
-  @override
-  LocationResponseModel fromJson(Map<String, dynamic> json) => _$LocationResponseModelFromJson(json);
+  LocationResponseModel fromJson(Map<String, dynamic> json) =>
+      _$LocationResponseModelFromJson(json);
 
-  @override
   Map<String, dynamic> toJson() => _$LocationResponseModelToJson(this);
 
-  factory LocationResponseModel.fromJson(Map<String, dynamic> json) => _$LocationResponseModelFromJson(json);
+  factory LocationResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$LocationResponseModelFromJson(json);
+
+  @override
+  String toString() {
+    return name ?? '';
+  }
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class ListSuggestLocationResponseModel extends BaseResponseModel {
+  List<LocationResponseModel>? data;
+  ListSuggestLocationResponseModel();
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ListSuggestLocationResponseModelToJson(this);
+
+  @override
+  BaseResponseModel fromJson(Map<String, dynamic> json) =>
+      _$ListSuggestLocationResponseModelFromJson(json);
 }

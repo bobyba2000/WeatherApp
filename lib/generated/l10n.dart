@@ -50,6 +50,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Real Feel`
+  String get realFeel {
+    return Intl.message(
+      'Real Feel',
+      name: 'realFeel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get searchLabel {
+    return Intl.message(
+      'Location',
+      name: 'searchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Input a location (e.g., city name or zip code)`
+  String get searchHint {
+    return Intl.message(
+      'Input a location (e.g., city name or zip code)',
+      name: 'searchHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unknown Error`
   String get unknownError {
     return Intl.message(

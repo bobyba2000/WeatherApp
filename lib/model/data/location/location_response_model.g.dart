@@ -28,3 +28,17 @@ Map<String, dynamic> _$LocationResponseModelToJson(
       'tz_id': instance.tzId,
       'localtime_epoch': instance.localtimeEpoch,
     };
+
+ListSuggestLocationResponseModel _$ListSuggestLocationResponseModelFromJson(
+        Map<String, dynamic> json) =>
+    ListSuggestLocationResponseModel()
+      ..data = (json['data'] as List<dynamic>?)
+          ?.map(
+              (e) => LocationResponseModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+Map<String, dynamic> _$ListSuggestLocationResponseModelToJson(
+        ListSuggestLocationResponseModel instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };

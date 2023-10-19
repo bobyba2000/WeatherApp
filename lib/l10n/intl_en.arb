@@ -1,3 +1,6 @@
 {
+    "realFeel": "Real Feel",
+    "searchLabel": "Location",
+    "searchHint": "Input a location (e.g., city name or zip code)",
     "unknownError": "Unknown Error"
 }

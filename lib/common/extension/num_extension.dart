@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-extension NumExtension on double {
+extension NumExtension on num {
   Widget get hSpace => SizedBox(
-        height: this,
+        height: toDouble(),
       );
   Widget get wSpace => SizedBox(
-        width: this,
+        width: toDouble(),
       );
 }

@@ -16,20 +16,21 @@ class ResponseResult<T extends BaseResponseModel> {
   });
 
   factory ResponseResult.fromJson(dynamic json) {
-    if (json['error'] != null) {
-      final error = ErrorResponseModel.fromJson(json['error']);
-      return ResponseResult(isSuccessful: false, error: error);
-    }
-    if (json is Map<String, dynamic>) {
-      T? responseData = AppDependencies.injector.get<T>();
-      responseData = responseData.fromJson(json) as T;
-      return ResponseResult(data: responseData, isSuccessful: true);
-    }
     if (json is List) {
       final listData = <String, dynamic>{};
       listData['data'] = json;
       T? responseData = AppDependencies.injector.get<T>();
       responseData = responseData.fromJson(listData) as T;
+      return ResponseResult(data: responseData, isSuccessful: true);
+    }
+
+    if (json is Map<String, dynamic>) {
+      if (json['error'] != null) {
+        final error = ErrorResponseModel.fromJson(json['error']);
+        return ResponseResult(isSuccessful: false, error: error);
+      }
+      T? responseData = AppDependencies.injector.get<T>();
+      responseData = responseData.fromJson(json) as T;
       return ResponseResult(data: responseData, isSuccessful: true);
     }
 
