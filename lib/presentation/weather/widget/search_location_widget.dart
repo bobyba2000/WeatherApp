@@ -31,7 +31,7 @@ class SearchLocationWidget extends BaseView<SearchLocationBloc> {
             color: Theme.of(context).colorScheme.onBackground,
           ),
       onSubmitted: onSubmit,
-      onTapItem: (value) => onSubmit(value.name ?? ''),
+      onTapItem: (value) => onSubmit('${value.lat},${value.lon}'),
       hintText: S.current.searchHint,
       hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
